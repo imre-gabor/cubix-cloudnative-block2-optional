@@ -1,0 +1,15 @@
+services:
+  backend:
+    image: quay.io/drsylent/cubix/block2/optional-backend:springboot3
+    environment:
+      DATA_SOURCE_FINDMEOUT: cubix
+
+  frontend:
+    image: frontend:latest
+    ports:
+    - 8080:8080
+    environment:
+      BACKEND_URL: "http://backend:8080"
+      JAR_ARGS: "--spring.main.banner-mode=off"
+      JAVA_OPTS: "-Dfrontend.default.message=env"
+  
